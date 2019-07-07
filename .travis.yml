@@ -9,3 +9,16 @@ before_install:
 
 script:
   - docker run jesusnoseq/docker-react npm run test -- --coverage
+
+deploy:
+  provider: elasticbeanstalk
+  region: "eu-central-1"
+  app: "docker"
+  env: "DockerReact-env"
+  bucket_name: "elasticbeanstalk-eu-central-1-165738285314"
+  bucket_path: "docker-react"
+  on:
+    branch: master
+  access_key_id: "$AWS_ACCESS_KEY"
+  secret_access_key_id: 
+    secure: "$AWS_SECRET_KEY"
